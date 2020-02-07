@@ -32,8 +32,9 @@ class PrivateIngredientsAPITests(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.user = get_user_model().objects.create_user(
-            'test@londonappdev.com',
-            'testpass'
+            email='other1@londonappdev.com',
+            password='testpass',
+            username='appd2v'
         )
         self.client.force_authenticate(self.user)
 
@@ -52,8 +53,9 @@ class PrivateIngredientsAPITests(TestCase):
     def test_ingredients_limited_to_user(self):
         """Test that only ingredients for authenticated user are returned"""
         user2 = get_user_model().objects.create_user(
-            'other@londonappdev.com',
-            'testpass'
+            email='other1@londonap2pdev.com',
+            password='testpass',
+            username='a1ppd2v'
         )
         Ingredient.objects.create(user=user2, name='Vinegar')
 
